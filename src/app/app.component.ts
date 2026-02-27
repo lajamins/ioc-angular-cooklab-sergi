@@ -10,4 +10,7 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'ioc-angular-cooklab-sergi';
+  constructor() {
+  console.log('🍳 CookLab arrencat correctament. Preparat per cuinar!');
+  }
 }
