@@ -1,13 +1,25 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { LlistaElementsComponent } from './components/llista-elements/llista-elements.component';
+import { ELEMENTS_MOCK } from './mocks/dades-mock';
+import { Element } from './models/element.model';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  imports: [CommonModule, LlistaElementsComponent],
+  template: `
+    <h1>CookLab - Elements</h1>
+    <app-llista-elements 
+      [elements]="elements"
+      (elementSeleccionat)="rebreElement($event)">
+    </app-llista-elements>
+  `,
 })
 export class AppComponent {
-  title = 'ioc-angular-cooklab-sergi';
+  elements: Element[] = ELEMENTS_MOCK;
+
+  rebreElement(element: Element) {
+    console.log('Element seleccionat:', element);
+  }
 }

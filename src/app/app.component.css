@@ -1,0 +1,11 @@
+.cataleg {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.element {
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 4px;
+}
