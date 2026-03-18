@@ -7,33 +7,84 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
-    <div class="barra-cerca">
+    <form (ngSubmit)="cercar()" #formCerca="ngForm" class="formulari">
+
       <input
         type="text"
+        name="cerca"
         [(ngModel)]="textCerca"
-        (input)="emitirCerca()"
+        #cercaInput="ngModel"
+        required
+        minlength="3"
         placeholder="Cerca elements..."
+        class="input"
       />
-    </div>
+
+      <!-- Error -->
+      <div *ngIf="cercaInput.invalid && cercaInput.touched" class="error">
+        <span *ngIf="cercaInput.errors?.['required']">
+          El camp és obligatori
+        </span>
+        <span *ngIf="cercaInput.errors?.['minlength']">
+          Mínim 3 caràcters
+        </span>
+      </div>
+
+      <button type="submit" [disabled]="formCerca.invalid">
+        Cercar
+      </button>
+
+    </form>
   `,
   styles: [`
-    .barra-cerca {
+    .formulari {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
       margin-bottom: 24px;
     }
-    input {
-      width: 100%;
-      padding: 12px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 1rem;
+
+    .input {
+      padding: 10px;
+      border: 2px solid #ccc;
+      border-radius: 6px;
+    }
+
+    /* Angular classes */
+    .input.ng-invalid.ng-touched {
+      border-color: red;
+    }
+
+    .input.ng-valid.ng-touched {
+      border-color: green;
+    }
+
+    .error {
+      color: red;
+      font-size: 0.9rem;
+    }
+
+    button {
+      width: fit-content;
+      padding: 8px 16px;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
     }
   `]
 })
 export class BarraCercaComponent {
+
   textCerca = '';
+
   @Output() cercaCanviada = new EventEmitter<string>();
 
-  emitirCerca(): void {
-    this.cercaCanviada.emit(this.textCerca);
+  cercar(): void {
+    if (this.textCerca.length >= 3) {
+      this.cercaCanviada.emit(this.textCerca);
+    }
   }
 }
