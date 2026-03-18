@@ -7,9 +7,12 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, FormsModule],
   template: `
-    <form (ngSubmit)="cercar()" #formCerca="ngForm" class="formulari">
+    <form (ngSubmit)="cercar()" #formCerca="ngForm" class="formulari" aria-label="Formulari de cerca">
+
+      <label for="cerca">Cercar elements</label>
 
       <input
+        id="cerca"
         type="text"
         name="cerca"
         [(ngModel)]="textCerca"
@@ -18,10 +21,12 @@ import { FormsModule } from '@angular/forms';
         minlength="3"
         placeholder="Cerca elements..."
         class="input"
+        aria-required="true"
+        [attr.aria-invalid]="cercaInput.invalid"
       />
 
-      <!-- Error -->
-      <div *ngIf="cercaInput.invalid && cercaInput.touched" class="error">
+      <!-- Errors -->
+      <div *ngIf="cercaInput.invalid && cercaInput.touched" class="error" aria-live="assertive">
         <span *ngIf="cercaInput.errors?.['required']">
           El camp és obligatori
         </span>
@@ -44,13 +49,16 @@ import { FormsModule } from '@angular/forms';
       margin-bottom: 24px;
     }
 
+    label {
+      font-weight: 600;
+    }
+
     .input {
       padding: 10px;
       border: 2px solid #ccc;
       border-radius: 6px;
     }
 
-    /* Angular classes */
     .input.ng-invalid.ng-touched {
       border-color: red;
     }

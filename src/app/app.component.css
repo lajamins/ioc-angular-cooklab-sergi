@@ -9,3 +9,11 @@
   padding: 8px;
   border-radius: 4px;
 }
+
+h1 {
+  font-size: 3rem;
+  color: #f5811b;
+  text-align: center;
+  margin-bottom: 15px;
+  margin-top: 20px;
+}

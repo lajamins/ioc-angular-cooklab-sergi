@@ -10,23 +10,32 @@ import { Element } from './models/element.model';
   standalone: true,
   imports: [CommonModule, LlistaElementsComponent, BarraCercaComponent],
   template: `
-    <main>
-      <h1>CookLab</h1>
+    <main aria-labelledby="titol-app">
 
-      <app-barra-cerca (cercaCanviada)="filtrarElements($event)"></app-barra-cerca>
+      <h1 id="titol-app">CookLab</h1>
 
-      <!-- ESTAT: Sense resultats -->
-      <div *ngIf="elementsFiltrats.length === 0 && textCercaActual">
+      <app-barra-cerca
+        (cercaCanviada)="filtrarElements($event)">
+      </app-barra-cerca>
+
+      <!-- Estat: Sense resultats -->
+      <div 
+        *ngIf="elementsFiltrats.length === 0 && textCercaActual"
+        role="alert"
+        aria-live="polite"
+      >
         <p>🔍 No s'han trobat elements per "<strong>{{ textCercaActual }}</strong>"</p>
       </div>
 
-      <!-- Llista d'elements -->
+      <!-- Llista -->
       <app-llista-elements
         *ngIf="elementsFiltrats.length > 0"
         [elements]="elementsFiltrats">
       </app-llista-elements>
+
     </main>
-  `
+  `,
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   elementsComplets: Element[] = ELEMENTS_MOCK;
@@ -35,6 +44,7 @@ export class AppComponent {
 
   filtrarElements(textCerca: string): void {
     this.textCercaActual = textCerca;
+
     if (!textCerca) {
       this.elementsFiltrats = this.elementsComplets;
     } else {

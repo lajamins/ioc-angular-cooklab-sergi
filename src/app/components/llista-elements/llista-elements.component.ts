@@ -9,6 +9,7 @@ import { Element } from '../../models/element.model';
   imports: [CommonModule, TargetaElementComponent],
   template: `
     <section class="llistat" aria-label="Llistat d'elements">
+
       <div *ngIf="elements.length === 0" class="missatge-buit">
         <p>No hi ha elements disponibles</p>
       </div>
@@ -19,33 +20,39 @@ import { Element } from '../../models/element.model';
           [element]="element">
         </app-targeta-element>
       </div>
+
     </section>
   `,
   styles: [`
     .llistat {
       width: 100%;
     }
+
     .graella {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
       gap: 24px;
       padding: 24px 0;
+      grid-template-columns: 1fr;
     }
+
+    /* Tablet */
+    @media (min-width: 768px) {
+      .graella {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Desktop */
+    @media (min-width: 1024px) {
+      .graella {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
     .missatge-buit {
       text-align: center;
       padding: 60px 20px;
       color: #666;
-    }
-    .missatge-buit p {
-      font-size: 1.1rem;
-      margin: 0;
-    }
-
-    @media (max-width: 768px) {
-      .graella {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
     }
   `]
 })
