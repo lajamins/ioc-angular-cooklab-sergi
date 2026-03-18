@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TargetaElementComponent } from '../targeta-element/targeta-element.component';
 import { Element } from '../../models/element.model';
@@ -14,15 +14,17 @@ import { Element } from '../../models/element.model';
       </div>
 
       <div *ngIf="elements.length > 0" class="graella">
-        <app-targeta-element 
-          *ngFor="let element of elements; trackBy: trackById" 
-          [element]="element"
-          (elementSeleccionat)="seleccionarElement($event)">
+        <app-targeta-element
+          *ngFor="let element of elements; trackBy: trackById"
+          [element]="element">
         </app-targeta-element>
       </div>
     </section>
   `,
   styles: [`
+    .llistat {
+      width: 100%;
+    }
     .graella {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -34,6 +36,11 @@ import { Element } from '../../models/element.model';
       padding: 60px 20px;
       color: #666;
     }
+    .missatge-buit p {
+      font-size: 1.1rem;
+      margin: 0;
+    }
+
     @media (max-width: 768px) {
       .graella {
         grid-template-columns: 1fr;
@@ -44,13 +51,8 @@ import { Element } from '../../models/element.model';
 })
 export class LlistaElementsComponent {
   @Input({ required: true }) elements: Element[] = [];
-  @Output() elementSeleccionat = new EventEmitter<Element>();
 
   trackById(index: number, element: Element): number {
     return element.id;
-  }
-
-  seleccionarElement(element: Element) {
-    this.elementSeleccionat.emit(element);
   }
 }

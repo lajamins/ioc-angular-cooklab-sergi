@@ -1,25 +1,49 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LlistaElementsComponent } from './components/llista-elements/llista-elements.component';
+import { BarraCercaComponent } from './components/barra-cerca/barra-cerca.component';
 import { ELEMENTS_MOCK } from './mocks/dades-mock';
 import { Element } from './models/element.model';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, LlistaElementsComponent],
+  imports: [CommonModule, LlistaElementsComponent, BarraCercaComponent],
   template: `
-    <h1>CookLab - Elements</h1>
-    <app-llista-elements 
-      [elements]="elements"
-      (elementSeleccionat)="rebreElement($event)">
-    </app-llista-elements>
-  `,
+    <main>
+      <h1>CookLab</h1>
+
+      <app-barra-cerca (cercaCanviada)="filtrarElements($event)"></app-barra-cerca>
+
+      <!-- ESTAT: Sense resultats -->
+      <div *ngIf="elementsFiltrats.length === 0 && textCercaActual">
+        <p>🔍 No s'han trobat elements per "<strong>{{ textCercaActual }}</strong>"</p>
+      </div>
+
+      <!-- Llista d'elements -->
+      <app-llista-elements
+        *ngIf="elementsFiltrats.length > 0"
+        [elements]="elementsFiltrats">
+      </app-llista-elements>
+    </main>
+  `
 })
 export class AppComponent {
-  elements: Element[] = ELEMENTS_MOCK;
+  elementsComplets: Element[] = ELEMENTS_MOCK;
+  elementsFiltrats: Element[] = ELEMENTS_MOCK;
+  textCercaActual = '';
 
-  rebreElement(element: Element) {
-    console.log('Element seleccionat:', element);
+  filtrarElements(textCerca: string): void {
+    this.textCercaActual = textCerca;
+    if (!textCerca) {
+      this.elementsFiltrats = this.elementsComplets;
+    } else {
+      const textMinuscules = textCerca.toLowerCase();
+      this.elementsFiltrats = this.elementsComplets.filter(element =>
+        element.titol.toLowerCase().includes(textMinuscules) ||
+        element.descripcio.toLowerCase().includes(textMinuscules) ||
+        element.categoria?.toLowerCase().includes(textMinuscules)
+      );
+    }
   }
 }
