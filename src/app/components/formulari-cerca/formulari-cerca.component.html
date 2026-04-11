@@ -1,0 +1,47 @@
+<div class="search-wrapper">
+  <form [formGroup]="searchForm" class="search-container" (submit)="$event.preventDefault()">
+    
+    <div class="field-group">
+      <label for="termeCerca">Cerca d'elements:</label>
+      
+      <div class="input-wrapper">
+        <input 
+          id="termeCerca"
+          type="text" 
+          formControlName="termeCerca" 
+          placeholder="Escriu per cercar..."
+          class="form-input">
+
+        @if (searchForm.get('termeCerca')?.pending) {
+          <span class="status-indicator">🔍 Validant...</span>
+        }
+
+        @if (searchForm.get('termeCerca')?.value) {
+          <button type="button" class="btn-clear" (click)="netejar()">
+            Netejar
+          </button>
+        }
+      </div>
+    </div>
+
+    @if (searchForm.get('termeCerca')?.touched) {
+      @if (searchForm.get('termeCerca')?.invalid) {
+        <div class="error-container">
+          @if (searchForm.get('termeCerca')?.hasError('minlength')) {
+            <p class="error-text">⚠️ El terme ha de tenir almenys 2 caràcters.</p>
+          }
+
+          @if (searchForm.get('termeCerca')?.hasError('maxlength')) {
+            <p class="error-text">⚠️ El terme no pot superar els 50 caràcters.</p>
+          }
+
+          @if (searchForm.get('termeCerca')?.hasError('senseResultats')) {
+            <p class="error-text">⚠️ No s'ha trobat cap element amb aquest codi.</p>
+          }
+        </div>
+      }
+    }
+
+    <button type="submit" style="display: none;">Cercar</button>
+  </form>
+</div>

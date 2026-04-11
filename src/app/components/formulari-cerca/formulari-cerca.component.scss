@@ -1,0 +1,26 @@
+.search-wrapper {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.input-wrapper {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.form-input {
+  padding: 8px;
+  flex-grow: 1;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.error-text {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 5px;
+}
