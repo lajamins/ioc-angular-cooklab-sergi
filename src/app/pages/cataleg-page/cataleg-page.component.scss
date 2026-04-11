@@ -1,0 +1,5 @@
+.cataleg-container { padding: 20px; font-family: sans-serif; }
+.loading-state { color: blue; }
+.error-state { color: red; border: 1px solid red; padding: 10px; }
+.product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.product-card { border: 1px solid #ccc; padding: 10px; border-radius: 8px; }

@@ -1,0 +1,32 @@
+{
+  "receptes": [
+    {
+      "id": "1",
+      "nom": "Truita de patates",
+      "descripcio": "La recepta clàssica de la cuina mediterrània amb patates, ous i ceba.",
+      "valoracio": 5,
+      "categoria": "Tradicional"
+    },
+    {
+      "id": "2",
+      "nom": "Paella de Marisc",
+      "descripcio": "Arròs bomba cuinat amb brous de peix, gambes, escamarlans i musclos.",
+      "valoracio": 4.5,
+      "categoria": "Arrossos"
+    },
+    {
+      "id": "3",
+      "nom": "Gaspatxo Andalús",
+      "descripcio": "Sopa freda refrescant amb tomàquet, cogombre, pebrot, oli d'oliva i pa.",
+      "valoracio": 4.2,
+      "categoria": "Entrants"
+    },
+    {
+      "id": "4",
+      "nom": "Crema Catalana",
+      "descripcio": "Postres tradicionals amb crema pastissera i una capa de sucre cremat.",
+      "valoracio": 4.9,
+      "categoria": "Postres"
+    }
+  ]
+}
