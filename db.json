@@ -1,32 +1,44 @@
 {
-  "receptes": [
+  "elements": [
     {
       "id": "1",
       "nom": "Truita de patates",
       "descripcio": "La recepta clàssica de la cuina mediterrània amb patates, ous i ceba.",
-      "valoracio": 5,
-      "categoria": "Tradicional"
+      "categoria": "Tradicional",
+      "preu": 12.50,
+      "imatge": "assets/truita.jpg",
+      "popular": true,
+      "stock": 15
     },
     {
       "id": "2",
       "nom": "Paella de Marisc",
-      "descripcio": "Arròs bomba cuinat amb brous de peix, gambes, escamarlans i musclos.",
-      "valoracio": 4.5,
-      "categoria": "Arrossos"
+      "descripcio": "Arròs bomba cuinat amb brous de peix, gambes i musclos.",
+      "categoria": "Arrossos",
+      "preu": 22.00,
+      "imatge": "assets/paella.jpg",
+      "popular": true,
+      "stock": 8
     },
     {
       "id": "3",
       "nom": "Gaspatxo Andalús",
-      "descripcio": "Sopa freda refrescant amb tomàquet, cogombre, pebrot, oli d'oliva i pa.",
-      "valoracio": 4.2,
-      "categoria": "Entrants"
+      "descripcio": "Sopa freda refrescant amb tomàquet, cogombre i pebrot.",
+      "categoria": "Entrants",
+      "preu": 6.50,
+      "imatge": "assets/gaspatxo.jpg",
+      "popular": false,
+      "stock": 20
     },
     {
       "id": "4",
       "nom": "Crema Catalana",
-      "descripcio": "Postres tradicionals amb crema pastissera i una capa de sucre cremat.",
-      "valoracio": 4.9,
-      "categoria": "Postres"
+      "descripcio": "Postres tradicionals amb crema pastissera i sucre cremat.",
+      "categoria": "Postres",
+      "preu": 5.75,
+      "imatge": "assets/crema.jpg",
+      "popular": true,
+      "stock": 12
     }
   ]
 }

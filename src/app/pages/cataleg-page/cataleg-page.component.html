@@ -1,4 +1,4 @@
-<div class="cataleg-container">
+<div class="cataleg-container"></div>
   <h1>CookLab</h1>
 
   @if (elementService.carregant()) {
@@ -10,22 +10,24 @@
   @if (elementService.error(); as msg) {
     <div class="error-state">
       <p>⚠️ {{ msg }}</p>
-      <button type="button" (click)="elementService.obtenirPopulars()">Torna a intentar-ho</button>
+      <button type="button" (click)="elementService.obtenirPopulars()">Reintentar</button>
     </div>
   }
 
-  @if (!elementService.carregant() && !elementService.error()) {
+  @if (!elementService.carregant()) {
+  @if (!elementService.error()) {
     <div class="product-grid">
       @for (item of elementService.elements(); track item.id) {
         <div class="product-card">
           <span class="badge">{{ item.categoria }}</span>
-          <h3>{{ item.nom }}</h3>
+          <h3>{{ item.titol }}</h3>
           <p>{{ item.descripcio }}</p>
-          <div class="rating">
-            <span>⭐ {{ item.valoracio }} / 5</span>
+          <div class="info-extra">
+            <p><strong>Preu:</strong> {{ item.preu }}€</p>
+            <p><strong>Stock:</strong> {{ item.unitats }} unitats</p>
           </div>
         </div>
       }
     </div>
   }
-</div>
+}

@@ -1,8 +1,8 @@
 import { Injectable, signal, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment'; 
-import { Recepta, ReceptaApiResponse } from '../models/recepta.model';
-import { adaptarReceptesApi } from '../adaptadors/recepta.adaptador';
+import { ElementCataleg, ElementApiResponse } from '../models/element.model';
+import { adaptarElementsApi } from '../adaptadors/element.adaptador';
 import { catchError, map, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
@@ -11,10 +11,12 @@ import { of } from 'rxjs';
 })
 export class ElementService {
   private http = inject(HttpClient);
-  private readonly url = `${environment.apiUrl}/receptes`;
+  
 
-  // Canviem el tipus de dades dels Signals a <Recepta[]>
-  private _elements = signal<Recepta[]>([]);
+  private readonly url = `${environment.apiUrl}/elements`;
+
+
+  private _elements = signal<ElementCataleg[]>([]);
   private _carregant = signal<boolean>(false);
   private _error = signal<string | null>(null);
 
@@ -22,18 +24,20 @@ export class ElementService {
   readonly carregant = this._carregant.asReadonly();
   readonly error = this._error.asReadonly();
 
+
   obtenirPopulars(): void {
     this._carregant.set(true);
     this._error.set(null);
 
-    this.http.get<ReceptaApiResponse[]>(this.url).pipe(
-      map(res => adaptarReceptesApi(res)),
-      tap(receptes => {
-        this._elements.set(receptes);
+ 
+    this.http.get<ElementApiResponse[]>(this.url).pipe(
+      map(res => adaptarElementsApi(res)), 
+      tap(elementsAdaptats => {
+        this._elements.set(elementsAdaptats);
         this._carregant.set(false);
       }),
       catchError(() => {
-        this._error.set('Error en carregar les receptes');
+        this._error.set("No s'han pogut carregar els elements del catàleg");
         this._carregant.set(false);
         return of([]);
       })
