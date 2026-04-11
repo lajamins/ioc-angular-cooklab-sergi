@@ -1,7 +1,12 @@
-<div class="cataleg-container"></div>
+<div class="cataleg-container">
   <h1>CookLab</h1>
+
+  <div class="fav-panel">
+    <span>🌟 Elements guardats: <strong>{{ preferitsService.totalPreferits() }}</strong></span>
+  </div>
+
   <app-formulari-cerca></app-formulari-cerca>
-  <hr>
+  <hr class="separator">
 
   @if (elementService.carregant()) {
     <div class="loading-state">
@@ -12,24 +17,33 @@
   @if (elementService.error(); as msg) {
     <div class="error-state">
       <p>⚠️ {{ msg }}</p>
-      <button type="button" (click)="elementService.obtenirPopulars()">Reintentar</button>
+      <button type="button" class="btn-retry" (click)="elementService.obtenirPopulars()">
+        Reintentar
+      </button>
     </div>
   }
 
   @if (!elementService.carregant()) {
-  @if (!elementService.error()) {
-    <div class="product-grid">
-      @for (item of elementService.elements(); track item.id) {
-        <div class="product-card">
-          <span class="badge">{{ item.categoria }}</span>
-          <h3>{{ item.titol }}</h3>
-          <p>{{ item.descripcio }}</p>
-          <div class="info-extra">
-            <p><strong>Preu:</strong> {{ item.preu }}€</p>
-            <p><strong>Stock:</strong> {{ item.unitats }} unitats</p>
+    @if (!elementService.error()) {
+      <div class="product-grid">
+        @for (item of elementService.elements(); track item.id) {
+          <div class="product-card">
+            <div class="card-header">
+              <span class="badge">{{ item.categoria }}</span>
+              <button type="button" class="btn-fav" (click)="togglePreferit(item)">
+                {{ preferitsService.esPreferit(item.id) ? '⭐' : '☆' }}
+              </button>
+            </div>
+
+            <h3>{{ item.titol }}</h3>
+            <p class="description">{{ item.descripcio }}</p>
+            <div class="info-extra">
+              <p><strong>Preu:</strong> {{ item.preu }}€</p>
+              <p><strong>Stock:</strong> {{ item.unitats }} unitats</p>
+            </div>
           </div>
-        </div>
-      }
-    </div>
+        }
+      </div>
+    }
   }
-}
+</div>
