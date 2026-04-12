@@ -18,4 +18,5 @@ export interface ElementCataleg {
   imatgeUrl: string;   // Mapejat de 'imatge'
   esPopular: boolean;  // Mapejat de 'popular'
   unitats: number;     // Mapejat de 'stock'
+  notes?: string[];
 }

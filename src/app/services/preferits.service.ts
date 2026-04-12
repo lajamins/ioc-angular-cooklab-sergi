@@ -55,4 +55,10 @@ export class PreferitsService {
   esPreferit(id: string): boolean {
     return this._preferits().some(item => item.id === id);
   }
+  actualitzarNotes(id: string, notes: string[]) {
+  this._preferits.update(list => 
+    list.map(item => item.id === id ? { ...item, notes } : item)
+  );
+  this.guardarALocalStorage(); // La funció que ja tenies de l'Ex 4
+  }
 }

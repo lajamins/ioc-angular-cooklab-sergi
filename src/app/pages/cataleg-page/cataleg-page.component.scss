@@ -63,3 +63,20 @@
   border: 0;
   border-top: 1px solid #ddd;
 }
+
+.separador-panell {
+  margin-top: 40px;
+  border: 0;
+  border-top: 1px solid #eee; // Una línia més subtil i elegant
+}
+
+.seccio-preferits {
+  padding: 20px 0;
+  
+  .titol-preferits {
+    text-align: center;
+    color: #444;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom: 30px;
+  }
+}

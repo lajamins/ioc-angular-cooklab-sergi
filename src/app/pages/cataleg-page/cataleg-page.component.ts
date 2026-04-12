@@ -1,7 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ElementService } from '../../services/element.service';
-import { PreferitsService } from '../../services/preferits.service'; // Injecció nova
+import { PreferitsService } from '../../services/preferits.service';
+import { PreferitsPanelComponent } from '../../components/preferits-panel/preferits-panel.component';
 import { FormulariCercaComponent } from '../../components/formulari-cerca/formulari-cerca.component';
 import { ElementCataleg } from '../../models/element.model';
 
@@ -9,7 +10,8 @@ import { ElementCataleg } from '../../models/element.model';
   selector: 'app-cataleg-page',
   standalone: true,
   imports: [
-    CommonModule, 
+    CommonModule,
+    PreferitsPanelComponent, 
     FormulariCercaComponent
   ],
   templateUrl: './cataleg-page.component.html',

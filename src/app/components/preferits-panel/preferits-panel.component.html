@@ -1,0 +1,42 @@
+<div class="panel-container">
+  <h2>Gestió de Preferits</h2>
+
+  @for (item of preferitsService.preferits(); track item.id) {
+    <div class="preferit-item">
+      <h3>{{ item.titol }}</h3>
+
+      <div [formGroup]="formularisNotes[item.id]">
+        <div formArrayName="notesArray">
+          @for (nota of getNotesArray(item.id).controls; track $index) {
+            <div class="nota-field">
+              <input type="text" 
+                     [formControlName]="$index" 
+                     placeholder="Escriu una nota..."
+                     [class.input-error]="nota.invalid && nota.dirty">
+
+              <button type="button" class="btn-remove" (click)="eliminarNota(item.id, $index)">x</button>
+
+              @if (nota.invalid && (nota.dirty || nota.touched)) {
+                <div class="error-msg">
+                  @if (nota.errors?.['required']) { <span>⚠️ La nota és obligatòria</span> }
+                  @if (nota.errors?.['minlength']) {
+                    <span>⚠️ Mínim 3 caràcters</span>
+                  }
+                </div>
+              }
+            </div>
+          }
+        </div>
+      </div>
+
+      <button type="button" 
+              class="btn-add" 
+              (click)="afegirNota(item.id)"
+              [disabled]="formularisNotes[item.id].invalid">
+        + Afegir nota
+      </button>
+    </div>
+  } @empty {
+    <p>No tens cap preferit seleccionat.</p>
+  }
+</div>
