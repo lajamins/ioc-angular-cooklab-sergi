@@ -1,25 +1,60 @@
 .navbar {
   display: flex;
-  gap: 20px;
-  padding: 10px;
-  background-color: #f8f9fa;
-  position: relative;
-  z-index: 10;
-  
-  .nav-item {
+  align-items: center;
+  padding: 1rem;
+  gap: 20px; // Espai constant entre tots els elements
+  border-bottom: 1px solid #ddd;
+
+  .logo {
+    font-weight: bold;
+    margin-right: 10px;
+    cursor: pointer;
     text-decoration: none;
-    color: #555;
-    padding: 5px 10px;
-    cursor: pointer; 
+    color: black;
+  }
 
-    &.active { 
-      color: #2196F3;
-      font-weight: bold;
-      border-bottom: 2px solid #2196F3;
+  .nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 15px;
+
+    a {
+      text-decoration: none;
+      color: black;
+      padding-bottom: 2px;
+
+      &:hover, &.active {
+        color: blue;
+        border-bottom: 2px solid blue; // El subratllat blau
+      }
     }
+  }
 
-    &:hover {
-      color: #2196F3; 
+  .auth-section {
+    margin-left: auto; // Això empeny el login a la dreta del tot
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    a, button {
+      text-decoration: none;
+      color: blue;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 1rem;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    
+    .user-name {
+      color: #555;
+      font-weight: 500;
     }
   }
 }

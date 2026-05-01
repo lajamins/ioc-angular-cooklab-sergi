@@ -1,5 +1,23 @@
-<nav class="navbar">
-  <a routerLink="/cataleg" routerLinkActive="active" class="nav-item">Inici</a>
-  <a routerLink="/cerca" routerLinkActive="active" class="nav-item">Cerca</a>
-  <a routerLink="/login" routerLinkActive="active" class="nav-item">Login</a>
-</nav>
+<header>
+  <nav class="navbar">
+    <div class="logo" routerLink="/">CookLab</div>
+    <ul class="nav-links">
+      <li><a routerLink="/cataleg" routerLinkActive="active">Catàleg</a></li>
+      <li><a routerLink="/cerca" routerLinkActive="active">Cerca</a></li>
+      <li><a routerLink="/preferits" routerLinkActive="active">Preferits</a></li>
+    </ul>
+
+    <div class="auth-section">
+      <!-- Fem servir el pipe async per subscriure'ns a l'usuari -->
+      <div *ngIf="usuari$ | async as usuari; else noLoguejat">
+        <span class="user-name">👨‍🍳 {{ usuari.nom }}</span>
+        <button (click)="onLogout()" class="btn-logout">Tancar sessió</button>
+      </div>
+
+      <!-- El template per quan no hi ha ningú loguejat -->
+      <ng-template #noLoguejat>
+        <a routerLink="/login" class="btn-login">Iniciar sessió</a>
+      </ng-template>
+    </div>
+  </nav>
+</header>

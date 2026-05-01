@@ -1,6 +1,6 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { CommonModule } from '@angular/common'; // Necessari per al *ngIf
+import { CommonModule } from '@angular/common';
 import { ElementService } from '../../services/element.service';
 import { ElementCataleg } from '../../models/element.model';
 

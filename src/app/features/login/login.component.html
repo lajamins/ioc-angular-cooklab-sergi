@@ -1,1 +1,30 @@
-<p>login works!</p>
+<div class="login-container">
+  <h2>Inici de sessió CookLab</h2>
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="email">Correu electrònic</label>
+      <input 
+        type="email" 
+        id="email"
+        name="email" 
+        [(ngModel)]="email" 
+        placeholder="xef@cooklab.com" 
+        required>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Contrasenya</label>
+      <input 
+        type="password" 
+        id="password"
+        name="password" 
+        [(ngModel)]="password" 
+        placeholder="1234" 
+        required>
+    </div>
+    <button type="submit">Entrar</button>
+    <p *ngIf="errorVisible()" class="error-msg">
+      ⚠️ Credencials incorrectes. Torna-ho a provar.
+    </p>
+  </form>
+</div>
