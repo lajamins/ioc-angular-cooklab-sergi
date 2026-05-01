@@ -1,0 +1,27 @@
+.search-page {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 20px;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+
+  .search-header {
+    margin-bottom: 30px;
+    h1 { color: #2c3e50; font-size: 2.5rem; }
+    p { color: #7f8c8d; }
+  }
+
+  .search-box {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+  }
+
+  .search-info {
+    margin-top: 20px;
+    color: #3498db;
+    font-style: italic;
+  }
+}

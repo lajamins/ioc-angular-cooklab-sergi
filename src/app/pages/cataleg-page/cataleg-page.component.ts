@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { ElementService } from '../../services/element.service';
 import { PreferitsService } from '../../services/preferits.service';
 import { PreferitsPanelComponent } from '../../components/preferits-panel/preferits-panel.component';
@@ -11,6 +12,7 @@ import { ElementCataleg } from '../../models/element.model';
   standalone: true,
   imports: [
     CommonModule,
+    RouterLink,
     PreferitsPanelComponent, 
     FormulariCercaComponent
   ],
@@ -19,14 +21,12 @@ import { ElementCataleg } from '../../models/element.model';
 })
 export class CatalegPageComponent implements OnInit {
   public elementService = inject(ElementService);
-  // Injectem el servei de preferits per usar-lo al template
   public preferitsService = inject(PreferitsService);
 
   ngOnInit() {
     this.elementService.obtenirPopulars();
   }
 
-  // Mètode per gestionar el clic a l'estrella
   togglePreferit(item: ElementCataleg): void {
     if (this.preferitsService.esPreferit(item.id)) {
       this.preferitsService.eliminarPreferit(item.id);

@@ -1,0 +1,38 @@
+<div class="container">
+  <header class="header">
+    <h1>CookLab</h1>
+    <p>Explora els nostres elements disponibles</p>
+  </header>
+
+  <!-- Estat de càrrega -->
+  <div *ngIf="carregant()" class="loading">
+    <p>Carregant dades des del servidor virtual (Port 4301)...</p>
+  </div>
+
+  <!-- Missatge d'error -->
+  <div *ngIf="error()" class="error-msg">
+    <strong>Error:</strong> {{ error() }}
+  </div>
+
+  <!-- Graella d'elements -->
+  <div class="grid" *ngIf="!carregant()">
+    <div *ngFor="let item of elements()" class="card">
+      <div class="card-content">
+        <img [src]="item.imatgeUrl" [alt]="item.titol" class="card-img">
+        <h3 class="card-title">{{ item.titol }}</h3>
+        <p class="card-description">{{ item.descripcio }}</p>
+        <div class="card-footer">
+          <span class="price">{{ item.preu }} €</span>
+          <span class="stock">Stock: {{ item.unitats }} unitats</span>
+        </div>
+      </div>
+      <a [routerLink]="['/detall', item.id]" class="btn-detail">
+        Veure detall
+      </a>
+    </div>
+  </div>
+
+  <div *ngIf="!carregant() && elements().length === 0" class="empty">
+    <p>No s'han trobat elements al servidor virtual.</p>
+  </div>
+</div>

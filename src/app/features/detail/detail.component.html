@@ -1,0 +1,42 @@
+<div class="container">
+  <header class="detail-header">
+    <a routerLink="/cataleg" class="btn-back">⬅ Tornar al Catàleg</a>
+  </header>
+
+  <div *ngIf="item() as element" class="detail-card">
+    <div class="image-section">
+  <img *ngIf="element.imatgeUrl" 
+     [src]="element.imatgeUrl" 
+     [alt]="element.titol" 
+     class="product-img"
+     #imgRef
+     (error)="imgRef.style.display = 'none'">
+</div>
+
+    <div class="info-section">
+      <span class="category-badge">{{ element.categoria }}</span>
+      <h1 class="product-title">{{ element.titol }}</h1>
+      <p class="product-description">{{ element.descripcio }}</p>
+      <div class="data-grid">
+        <div class="data-item">
+          <span class="label">Preu</span>
+          <span class="value">{{ element.preu }} €</span>
+        </div>
+        <div class="data-item">
+          <span class="label">Stock</span>
+          <span class="value">{{ element.unitats }} unitats</span>
+        </div>
+        <div class="data-item">
+          <span class="label">ID Producte</span>
+          <span class="value"><code>#{{ element.id }}</code></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Missatge si no hi ha dades -->
+  <div *ngIf="!item()" class="error-view">
+    <p>⚠️ No s'ha pogut carregar la informació del producte.</p>
+    <button routerLink="/cataleg" class="btn-back">Tornar</button>
+  </div>
+</div>
