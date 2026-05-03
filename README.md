@@ -1,27 +1,48 @@
-# IocAngularCooklabSergi
+# CookLab - Gestió de Receptes
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.21.
+Aplicació Angular desenvolupada per a la gestió de receptes i productes culinaris, posant èmfasi en l'optimització del rendiment i l'experiència d'usuari.
 
-## Development server
+## 🗺️ Mapa de Rutes
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+| Path | Component | Accés |
+| :--- | :--- | :--- |
+| `/login` | `LoginComponent` | Públic |
+| `/cataleg` | `CatalegPageComponent` | Públic |
+| `/cerca` | `SearchComponent` | Públic |
+| `/detall/:id` | `DetailComponent` | Públic |
+| `/preferits` | `PreferitsPanelComponent` | **Privat (authGuard)** |
+| `**` | (Redirigeix a `/cataleg`) | Públic |
 
-## Code scaffolding
+## 🚀 Execució en Local
+```bash
+# 1. Clonar el repositori
+git clone [https://github.com/lajamins/ioc-angular-cooklab-sergi]
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# 2. Accedir a la carpeta
+cd ioc-angular-cooklab-sergi
 
-## Build
+# 3. Instal·lar dependències
+npm install
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+# 4. Aixecar el servidor de desenvolupament
+ng serve
 
-## Running unit tests
+# 5. Accés a l'aplicació
+Accedir a http://localhost:4200
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Build de producció
 
-## Running end-to-end tests
+Per generar el build de producció de l'aplicació, s'ha utilitzat la següent comanda:
+ng build --configuration production
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Mida aproximada del bundle obtinguda:
 
-## Further help
+Mida total (Initial total): 391.42 kB
+Mida de transferència estimada: 102.53 kB
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 🔐 Credencials de Prova
+
+Per accedir a la secció protegida de l'aplicació, s'han d'utilitzar les següents credencials (que ja apareixen per defecte en els camps corresponents):
+
+- **Usuari:** `xef@cooklab.com`
+- **Contrasenya:** `1234`
