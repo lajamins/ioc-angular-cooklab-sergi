@@ -1,18 +1,21 @@
 <div class="cataleg-container">
   <h1>CookLab</h1>
 
+  <!-- Panell informatiu amb Signal de preferits -->
   <div class="fav-panel">
     <span>🌟 Elements guardats: <strong>{{ preferitsService.totalPreferits() }}</strong></span>
   </div>
 
   <hr class="separator">
 
+  <!-- Estat de Càrrega -->
   @if (elementService.carregant()) {
     <div class="loading-state">
       <p>⏳ Buscant receptes...</p>
     </div>
   }
 
+  <!-- Estat d'Error -->
   @if (elementService.error(); as msg) {
     <div class="error-state">
       <p>⚠️ {{ msg }}</p>
@@ -22,35 +25,36 @@
     </div>
   }
 
-  @if (!elementService.carregant()) {
-    @if (!elementService.error()) {
+  <!-- Llistat amb Virtual Scroll (Optimització RA4) -->
+  @if (!elementService.carregant() && !elementService.error()) {
+
+    <cdk-virtual-scroll-viewport itemSize="300" class="product-viewport">
       <div class="product-grid">
-        @for (item of elementService.elements(); track item.id) {
-          <div class="product-card">
-            <div class="card-header">
-              <span class="badge">{{ item.categoria }}</span>
-              <button type="button" class="btn-fav" (click)="togglePreferit(item)">
-                {{ preferitsService.esPreferit(item.id) ? '⭐' : '☆' }}
-              </button>
-            </div>
-
-            <h3>{{ item.titol }}</h3>
-            <p class="description">{{ item.descripcio }}</p>
-            <div class="info-extra">
-              <p><strong>Preu:</strong> {{ item.preu }}€</p>
-              <p><strong>Stock:</strong> {{ item.unitats }} unitats</p>
-            </div>
-
-            <!-- SECCIÓ AFEGIDA: Botó de detall -->
-            <div class="card-actions">
-              <a [routerLink]="['/detall', item.id]" class="btn-detall">
-                Veure Detalls
-              </a>
-            </div>
+        <div *cdkVirtualFor="let item of elementsVirtuals" class="product-card">
+          <div class="card-header">
+            <span class="badge">{{ item.categoria }}</span>
+            <button type="button" class="btn-fav" (click)="togglePreferit(item)">
+              {{ preferitsService.esPreferit(item.id) ? '⭐' : '☆' }}
+            </button>
           </div>
-        }
+
+          <h3>{{ item.titol }}</h3>
+          <p class="description">{{ item.descripcio }}</p>
+          <div class="info-extra">
+            <p><strong>Preu:</strong> {{ item.preu }}€</p>
+            <p><strong>Stock:</strong> {{ item.unitats }} unitats</p>
+          </div>
+
+          <div class="card-actions">
+            <a [routerLink]="['/detall', item.id]" class="btn-detall">
+              Veure Detalls
+            </a>
+          </div>
+
+        </div>
       </div>
-    }
+
+    </cdk-virtual-scroll-viewport>
   }
 </div>
 

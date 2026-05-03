@@ -3,10 +3,12 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ElementService } from '../../services/element.service';
 import { ElementCataleg } from '../../models/element.model';
+import { ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-detail',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, RouterLink],
   templateUrl: './detail.component.html', // Usarem el fitxer HTML per neteja
   styleUrl: './detail.component.scss'
